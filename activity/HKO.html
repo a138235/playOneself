@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<!--<meta http-equiv="Cache-Control" content="no-siteapp" />-->
+<meta name="format-detection" content="telephone=no" />
+<meta content="email=no" name="format-detection" />
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>我们在线</title>
+<link rel="stylesheet" href="../resource/css/H5base.css">
+<script src="../resource/js/jquery-2.1.4.min.js"></script>
+<script src="../resource/js/vue.js"></script>
+<script src="../resource/js/jqBase.js"></script>
+<!-- 魔窗sdk -->
+<!--<script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>-->
+<style>
+    .img_div{
+        width: 100%;
+    }
+    #mlinkBtn{
+        display: block;
+        width: 100%; 
+    }
+</style>
+</head>
+<body>
+    <div>
+        <input>
+    </div>
+<div id="vueBox" class="big_container" style="background-color: rgb(101, 57, 223);">
+    <!-- 第一张 -->
+    <div class="img_div">
+        <img :src="realImagesGroup.first" alt="">
+
+    </div>
+    <!-- 第二章 -->
+    <div class="img_div" @click="toCourseDetail">
+        <img style="width:100%;" :src="realImagesGroup.second" alt="" />
+    </div>
+    <!-- 第三章 不变 -->
+    <div id="ss" class="img_div" >
+        <img src="../resource/images/HPCKO/bottom.jpg" alt="" />
+    </div>
+
+</div>
+<script>
+    var $node = $('#ss').html('123');
+    var xxvv = document.querySelector('#vueBox');
+    xxvv.classList.add("dd");
+    var vm = new Vue({
+        el: '#vueBox',
+        data: {
+            realImagesGroup: {
+
+            },
+            imagesGroup03: {
+                first: '../resource/images/HPCKO/031.jpg',
+                second: '../resource/images/HPCKO/032.jpg'
+            },
+            imagesGroup05: {
+                first: '../resource/images/HPCKO/051.jpg',
+                second: '../resource/images/HPCKO/052.jpg'
+            },
+            imagesGroup07: {
+                first: '../resource/images/HPCKO/071.jpg',
+                second: '../resource/images/HPCKO/072.jpg'
+            }
+        },
+        methods: {
+            toCourseDetail: function(){
+                var UA = navigator.userAgent;
+                if(UA.indexOf('SRJYAPP')>-1){  //APP端
+                     //js调用android或ios方法
+                    let param = "{\"type\":10,\"data\":{\"courseId\":\"" + "C00000535" + "\"}}"; 
+                    try {
+                        window.webkit.messageHandlers.pitaya.postMessage(param);
+                    }catch (e) {
+                        window.pitaya.postMessage(param);
+                    }
+                }
+                if($.isWeixinBrowser()){
+                    location.href = 'https://husky.wmzx.com/bss/wx/shareUrl/C00000535/COURSE.do?qd=PPHD';
+                }               
+            },
+        },
+        mounted: function(){
+            // alert(JSON.stringify(navigator.userAgent));
+            var myDate = new Date().getDate();  
+            if(myDate == 24){
+                this.realImagesGroup = this.imagesGroup03;
+            }else if(myDate == 25){
+                this.realImagesGroup = this.imagesGroup05;
+            }else if(myDate == 26){
+                this.realImagesGroup = this.imagesGroup07;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

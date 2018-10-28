@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <!--<meta http-equiv="Cache-Control" content="no-siteapp" />-->
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>我们在线</title>
+    <link rel="stylesheet" href="../resource/css/H5base.css">
+    <script src="../resource/js/jquery-2.1.4.min.js"></script>
+    <script src="../resource/js/vue.min.js"></script>
+    <script src="../resource/js/jqBase.js"></script>
+    <!-- 魔窗sdk -->
+    <!--<script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>-->
+    <style>
+        .img_div{
+            width: 100%;
+        }
+        #mlinkBtn{
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v>
+        <input type="text"  v-model="username">
+        <p v->Hello{{username}}</p>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                username: 'hehe'
+            },
+        })
+    </script>
+</body>
+</html>

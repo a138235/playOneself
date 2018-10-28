@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="username">
+    <p>hello {{username.toUpperCase()}}</p>
+    <p v-html=msg></p>
+    <p v-text=msg></p>
+    <img v-bind:src="imageUrl" >
+    <img :src="imageUrl" >
+    <button @click="test">test1</button>
+    <button @click="test2(msg)">1222</button>
+</div>
+
+<script type="text/javascript" src="../resource/js/vue.js"></script>
+<script type="text/javascript">
+    const vue = new Vue({
+        el: '#app',
+        data: {
+            username: 'hello world',
+            msg: '<a href="https://www.baidu.com">baidu</a>',
+            imageUrl: 'https://upload-images.jianshu.io/upload_images/9811187-6b8d82dd0bacd702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp'
+        },
+        methods: {
+            test () {
+                alert("haha")
+            },
+            test2(content){
+                alert(content)
+            }
+        }
+    })
+
+</script>
+<script></script>
+
+</body>
+</html>

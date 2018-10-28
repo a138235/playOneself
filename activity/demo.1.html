@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    姓: <input placeholder="名字" v-model="firstName"/> <br>
+    名: <input v-model="lastName"/><br>
+    姓名1(单向): <input v-model="fullName"/><br>
+    姓名2(单向): <input v-model="fillname2"/><br>
+    姓名3(双向): <input v-model="fullname3"/><br>
+
+    <p>{{fullName}}</p>
+    <p>{{fullName}}</p>
+    <p>{{fullName}}</p>
+</div>
+
+<script type="text/javascript" src="../resource/js/vue.js"></script>
+<script type="text/javascript">
+    const vm = new Vue({
+        el:'#app',
+        data:{
+            firstName:'A',
+            lastName:'B',
+            fillname2:'B'
+        },
+        computed: {
+            fullName(){
+                console.log(this)
+                return this.firstName+' '+this.lastName
+            },
+            fullname3:{
+                //得到当前属性的值
+                get(){
+                    return this.firstName+' '+this.lastName;
+                },
+                set(value){
+                    const names = value.split(' ');
+                    this.firstName=names[0];
+                    this.lastName=names[1];
+                }
+            }
+        },
+        watch: {
+            firstName: function (newValue, oldValue){
+                console.log(newValue);
+                console.log(oldValue);
+                this.fillname2=newValue+' '+this.lastName
+            }
+        }
+    });
+    vm.$watch('lastName',function (value) {
+        this.fillname2=this.firstName+' '+value
+    })
+
+</script>
+<script></script>
+
+</body>
+</html>

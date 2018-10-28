@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="data">
+    <p v-if="ok">成功了</p>
+    <p v-else>失败了</p>
+
+    <p v-show="ok">表白成功</p>
+    <p v-show="!ok">表白失败</p>
+    <button @click="ok=!ok">切换</button>
+</div>
+<script src="../resource/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#data',
+        data: {
+            ok: true,
+        }
+    })
+</script>
+</body>
+</html>
