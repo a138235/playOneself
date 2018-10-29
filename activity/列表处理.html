@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="demo">
+    <input type="text" v-model="searchName">
+    <ul>
+        <li v-for="(item,index) in filterPerson" :key="index">
+            {{index}}
+            {{item.name}}
+            {{item.age}}
+        </li>
+    </ul>
+    <button @click="orderType=1">年龄降序</button>
+    <button @click="orderType=2">年龄升序</button>
+    <button @click="orderType=0">原本顺序</button>
+
+
+</div>
+
+
+<script src="../resource/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            searchName: '',
+            orderType: 0,
+            person: [
+                {name: "tom", age: 18},
+                {name: "jack", age: 11},
+                {name: "rose", age: 13},
+                {name: "Bob", age: 15}
+            ]
+        },
+        computed: {
+            filterPerson() {
+                // const {searchName, person, orderType} = this;
+                let that = this;
+                let tempPerson = that.person.filter(p => p.name.indexOf(that.searchName) !== -1);
+                if (that.orderType === 1) {
+                    tempPerson.sort(function (p1, p2) {
+                        return p1.age-p2.age;
+                    })
+                }
+                else if (that.orderType === 2) {
+                    tempPerson.sort(function (p1, p2) {
+                        return p2.age-p1.age;
+                    })
+                }
+                return tempPerson;
+            }
+        },
+        methods: {
+            ascAge() {
+
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>

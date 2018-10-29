@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo">
+    <h2>测试寻找</h2>
+    <ul>
+        <li v-for="(p, index) in person" :key="index">
+            {{index}}---{{p.name}}---{{p.age}}
+            ----
+            <button @click="deleteP(index)">删除</button>
+            <button @click="updateP(index,{name: 'xxxxxxx', age: 18})">更新</button>
+        </li>
+    </ul>
+    <h2>测试对象</h2>
+    <ul>
+        <li v-for="(item,key) in person[1]">
+            {{key}}:{{item}}
+        </li>
+    </ul>
+
+</div>
+
+<script src="../resource/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            person: [
+                {name: "tom", age: 18},
+                {name: "jack", age: 11},
+                {name: "rose", age: 13},
+                {name: "Bob", age: 15}
+            ]
+        },
+        methods: {
+            deleteP(index) {
+                this.person.splice(index, 1)
+            },
+            updateP(index, data) {
+                this.person.splice(index, 0, data)
+                // this.person=[]
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

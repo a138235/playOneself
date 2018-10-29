@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo">
+    <h2>1.绑定监听</h2>
+    <button @click="test1">test1</button>
+    <button @click="test2">test2</button>
+    <button @click="test3(11,$event)">test3</button>
+    <button>test1</button>
+
+
+    <h2>1.事件修饰符</h2>
+    <div style="width: 200px; height: 200px; background: pink; " @click="test5">
+        <div style="width: 100px; height: 100px; background: greenyellow; " @click.stop="test6"></div><!-- 停止事件冒泡 -->
+    </div>
+    <a href="https://www.baidu.com" @click.prevent="test7">去百度</a><!--阻止事件默认行为-->
+    <h2>1.按键修饰符</h2>
+    <input type="text" @keyup.enter="test8">
+</div>
+
+
+<script src="../resource/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {},
+        methods: {
+            test1() {
+                alert("111")
+            },
+            test2(event) {
+                alert(event.innerHTML)
+            },
+            test3(number, event) {
+                alert(number + event.target.innerHTML)
+            },
+            test5() {
+                alert("out")
+            },
+            test6(event) {
+                // event.stopPropagation(); // t停止事件冒泡
+                alert("inner")
+            },
+            test7(event) {
+                // event.stopPropagation(); // t停止事件冒泡
+                // event.preventDefault();//阻止默认事件
+                alert("qubaidu")
+            },
+            test8(event) {
+                // event.stopPropagation(); // t停止事件冒泡
+                // event.preventDefault();//阻止默认事件
+                alert(event.target.value)
+            },
+        },
+        watch: {}
+    })
+</script>
+</body>
+</html>
